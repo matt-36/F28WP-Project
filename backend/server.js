@@ -19,9 +19,11 @@ app.get('/', (req, res) => {
 // Routes
 const authRoutes = require('./routes/authRoutes');
 const listingRoutes = require('./routes/listingRoutes');
+const bookingRoutes = require('./routes/bookingRoutes');
 
 app.use('/api', authRoutes);
 app.use('/api', listingRoutes);
+app.use('/api/bookings', bookingRoutes);
 
 // Start server
 app.listen(PORT, '0.0.0.0', () => {

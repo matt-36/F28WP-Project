@@ -4,6 +4,7 @@ const { readData, writeData } = require('../utils/dataHandler');
 
 const generateId = (arr) => arr.length ? Math.max(...arr.map(item => item.id)) + 1 : 101;
 
+// Create listing
 router.post('/listings', (req, res) => {
     const newListingData = req.body;
 
@@ -31,6 +32,7 @@ router.post('/listings', (req, res) => {
     });
 });
 
+// Get nand filter listings
 router.get('/listings', (req, res) => {
     const listings = readData('listings.json');
     let filteredListings = listings;
@@ -54,6 +56,7 @@ router.get('/listings', (req, res) => {
     res.status(200).json(filteredListings);
 });
 
+// Update listing
 router.put('/listings/:id', (req, res) => {
     const listingId = parseInt(req.params.id);
     const updateData = req.body;
@@ -79,6 +82,7 @@ router.put('/listings/:id', (req, res) => {
     });
 });
 
+// Delete listing
 router.delete('/listings/:id', (req, res) => {
     const listingId = parseInt(req.params.id);
     const listings = readData('listings.json');
@@ -106,6 +110,7 @@ router.get('/listings/:id/bookings', (req, res) => {
     res.status(200).json(listingBookings);
 });
 
+// Approve / deny booking
 router.put('/listings/:id/status', (req, res) => {
     const bookingId = parseInt(req.params.id);
     const newStatus = req.body.status;
@@ -140,6 +145,7 @@ router.put('/listings/:id/status', (req, res) => {
     }
 });
 
+// View lister's listings
 router.get('/users/:listerId/listings', (req, res) => {
     const listerId = parseInt(req.params.listerId);
 
